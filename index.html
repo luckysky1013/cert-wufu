@@ -155,7 +155,12 @@ function fill(){const c=CERT;
 function qr(){
   const url=location.href;
   $("pageUrl").textContent=url;
-  $("qrImg").src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(url);
+  // 优先使用随库托管的本地二维码；访问域名非正式域名时实时生成兜底
+  if (location.hostname.indexOf("github.io")>=0 || location.hostname.indexOf("cert")>=0) {
+    $("qrImg").src="qr.png";
+  } else {
+    $("qrImg").src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(url);
+  }
 }
 fill();qr();
 </script>
