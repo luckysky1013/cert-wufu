@@ -2,167 +2,129 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a3d7a">
-<title>特种设备作业人员证 · 公示核验</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>全国特种设备公示信息查询平台</title>
 <style>
-  :root{
-    --gov:#0a3d7a; --gov2:#1173e6; --bg:#eef2f7; --card:#fff; --ink:#18222e;
-    --muted:#6a7686; --ok:#0c8a4f; --okbg:#e7f6ee; --line:#e4eaf1; --warn:#a15c07;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:
-      radial-gradient(1200px 500px at 50% -10%, #dbe9ff 0%, transparent 60%),var(--bg);
-    color:var(--ink);-webkit-font-smoothing:antialiased}
-  .hd{position:relative;background:linear-gradient(120deg,#082f60,#0b57b0 60%,#1173e6);color:#fff;
-    padding:26px 20px 8px}
-  .hd .gov{font-size:12px;letter-spacing:.4em;opacity:.78}
-  .hd h1{font-size:19px;font-weight:800;margin-top:10px;letter-spacing:.5px}
-  .hd .seal{position:absolute;right:18px;top:22px;width:58px;height:58px;border-radius:50%;
-    border:2px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;
-    font-size:9.5px;line-height:1.4;text-align:center;color:#fff;opacity:.9;letter-spacing:1px}
-  .hd .seal b{font-size:14px}
-  .wrap{max-width:780px;margin:0 auto;padding:0 14px 46px}
-  .hero{position:relative;margin:18px 0 0;background:linear-gradient(135deg,#fff,#f4f8fe);
-    border-radius:18px;box-shadow:0 10px 34px rgba(18,60,110,.12);padding:20px 18px 16px;
-    display:flex;align-items:center;gap:16px;border:1px solid #eef2f8}
-  .hero .av{width:66px;height:66px;border-radius:50%;flex:0 0 auto;background:linear-gradient(135deg,#0a4d92,#0f7bd6);
-    color:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:800;
-    box-shadow:0 6px 16px rgba(10,77,146,.32)}
-  .hero .who{flex:1;min-width:0}
-  .hero .nm{font-size:22px;font-weight:800;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-  .sex{font-size:13px;color:#0a4d92;background:#e6f0ff;padding:2px 11px;border-radius:20px;font-weight:600}
-  .hero .uid{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:.4px}
-  .badge{display:inline-flex;align-items:center;gap:7px;margin-top:9px;font-size:12.5px;color:var(--ok);
-    background:var(--okbg);padding:4px 12px;border-radius:20px;font-weight:600}
-  .badge .i{width:9px;height:9px;border-radius:50%;background:var(--ok)}
-  .sheet{background:var(--card);border-radius:18px;box-shadow:0 8px 28px rgba(18,60,110,.09);
-    overflow:hidden;margin-top:16px;border:1px solid #eef2f8}
-  .sheet .tt{display:flex;align-items:center;gap:9px;padding:15px 18px 12px;font-weight:800;font-size:15px;
-    color:var(--gov)}
-  .sheet .tt::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(#0a4d92,#0f7bd6)}
-  table{width:100%;border-collapse:collapse;font-size:14.5px}
-  tr{border-bottom:1px solid var(--line)}
-  tr:last-child{border-bottom:none}
-  td{padding:12px 18px;vertical-align:middle}
-  td.k{width:122px;color:var(--muted);background:#f7fafc;font-size:13.5px;font-weight:600;letter-spacing:.5px}
-  td.v{font-weight:600}
-  .hint{font-size:12px;color:var(--muted);padding:10px 18px 0}
-  .qrs{display:flex;align-items:center;gap:16px;margin-top:18px;background:#0a2f5d;
-    border-radius:18px;padding:16px;color:#fff}
-  .qrs img{width:120px;height:120px;flex:0 0 auto;background:#fff;padding:6px;border-radius:10px}
-  .qrs .dl h3{font-size:15px;font-weight:700}
-  .qrs .dl p{font-size:12px;opacity:.8;margin-top:6px;line-height:1.6;word-break:break-all}
-  .foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:18px;line-height:1.9}
-  .foot b{color:#0a4d92}
+/* ---- copy of official 表现风格：body 浅灰、mui-title 黑色导航、mui-card 白底 ---- */
+body{background:#efeff4;font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;margin:0;color:#222}
+*{box-sizing:border-box}
+/* mui 风格 cell */
+.mui-content{background:#efeff4}
+.mui-card{background:#fff;border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.3);margin:12px}
+.mui-card>div{margin:10px}
+/* form rows */
+.mui-input-group{background:#fff;overflow:hidden}
+.mui-input-row{display:flex;align-items:center;padding:0 15px;border-bottom:1px solid #c8c7cc;background:#fff;min-height:44px}
+.mui-input-row label,.mui-input-row p{flex:1;margin:0;font-size:15px}
+.mui-input-group .mui-input-row{float:none}
+.mui-button{display:inline-block;padding:6px 12px;margin-bottom:0;font-weight:500;font-size:14px;line-height:inherit;
+  text-align:center;border:1px solid #ccc;border-radius:2px;background:#f7f7f7}
+/* colors taken from observed official */
+.btn-blue{background-color:#074fa1;color:#fff;border-color:#074fa1}
+.btn-gray{background-color:#dfdfdf;color:#333;border-color:#dfdfdf}
+@media (min-width:48em){ .mui-card{margin:18px auto;max-width:560px} }
+/* M-type detail table mimicking layui-table */
+.mtable{width:100%;border-collapse:collapse;border:1px solid #e2e2e2;background:#fff;font-size:14px}
+.mtable td{border:1px solid #e2e2e2;padding:9px 15px;vertical-align:top;line-height:1.5}
+.mtable td.k{width:34%;background:#fafafa;color:#333;font-weight:normal}
+.mtable td.v{color:#222}
 </style>
 </head>
 <body>
 
-<div class="hd">
-  <div class="seal">证 件<br><b>核验</b><br>标识</div>
-  <div class="gov">全国特种设备公示信息查询平台</div>
-  <h1>特种设备作业人员证 · 扫码核验</h1>
+<header class="mui-bar" style="background:#f7f7f7;border-bottom:1px solid #d9d9d9;height:44px;line-height:44px;padding:0 10px;">
+  <h1 style="margin:0;font-size:17px;color:#000;text-align:left;font-weight:500;" class="mui-title">全国特种设备公示信息查询平台</h1>
+</header>
+
+<!-- ============ 查询面板（首屏，复刻 qrcode 页） ============ -->
+<div id="queryPanel" class="mui-content" style="padding-top:2px;">
+  <div class="mui-card">
+    <div class="mui-input-group">
+      <div class="mui-input-row" style="min-height:auto;padding:14px 15px;border-bottom:none;display:block;">
+        <p style="font-size:15px;color:#333;">
+          <b>您查询的人员公示基本信息如下：</b><br>
+          姓名：伍金福<br>
+          证书编号：612425198808191454<br>
+          如需查看详细信息，请在下方输入验证码后，点击“显示详情”按钮继续查看<br><br>
+          请在<span id="spTimeTick" style="font-weight:bold;color:Red">110</span>秒内完成验证查询。超时后，请重新扫码查验。
+        </p>
+      </div>
+      <div class="mui-input-row" style="border-top:1px solid #c8c7cc;height:50px;">
+        <input type="text" name="vCode" id="vCode" placeholder="请输入验证码"
+               style="flex:1;height:34px;border:1px solid #e4e4e4;background:#fafafa;padding:0 8px;font-size:15px;">
+        <img id="imgVCode" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='36'><rect width='100%25' height='100%25' fill='%23f3efe2'/><text x='8' y='25' font-size='18' fill='%23074fa1' font-family='Georgia' font-style='italic'>7N&nbsp;2Q</text></svg>"
+             title="示例验证码（本静态页不作真实校验，点击可直接看详情）" style="height:36px;margin-left:10px;cursor:pointer;">
+      </div>
+      <div style="padding:0 15px 22px;text-align:center;margin-top:2px;">
+        <button type="button" id="bShow" class="mui-button btn-blue" style="width:46%;height:40px;font-size:20px;">显示详情</button>
+        <button type="button" id="bReset" class="mui-button btn-gray" style="width:46%;height:40px;font-size:20px;margin-left:2%;">清空</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="wrap">
-
-  <div class="hero">
-    <div class="av" id="initAv">伍</div>
-    <div class="who">
-      <div class="nm" id="pName">伍金福 <span class="sex" id="pSex">男</span></div>
-      <div class="uid">证书编号　<span id="pNo">612425198808191454</span></div>
-      <div class="badge"><span class="i"></span>公示档案有效 · 本码已核验</div>
-    </div>
-  </div>
-
-  <div class="sheet">
-    <div class="tt">人员资质档案</div>
-    <table>
-      <tr><td class="k">身份证号</td><td class="v" id="f_sfzh"></td></tr>
-      <tr><td class="k">姓名</td><td class="v" id="f_name"></td></tr>
-      <tr><td class="k">性别</td><td class="v" id="f_sex"></td></tr>
-      <tr><td class="k">证书类别</td><td class="v" id="f_zslb"></td></tr>
-      <tr><td class="k">证书编号</td><td class="v" id="f_zsbh"></td></tr>
-      <tr><td class="k">发证机关</td><td class="v" id="f_fzjg"></td></tr>
-      <tr><td class="k">发证机关所在地</td><td class="v" id="f_fzjgSzd"></td></tr>
-      <tr><td class="k">从业种类</td><td class="v" id="f_cyzl"></td></tr>
-      <tr><td class="k">考核单位</td><td class="v" id="f_khdw"></td></tr>
-      <tr><td class="k">考核日期</td><td class="v" id="f_khrq"></td></tr>
-      <tr><td class="k">持证项目</td><td class="v" id="f_czxm"></td></tr>
-      <tr><td class="k">批准日期</td><td class="v" id="f_pzrq"></td></tr>
-      <tr><td class="k">批准单位</td><td class="v" id="f_pzdw"></td></tr>
-      <tr><td class="k">有效日期</td><td class="v" id="f_yxrq"></td></tr>
-      <tr><td class="k">备注</td><td class="v" id="f_remark"></td></tr>
-    </table>
-    <div class="hint" id="extraHint"></div>
-  </div>
-
-  <div class="qrs">
-    <img id="qrImg" alt="本页二维码">
-    <div class="dl">
-      <h3>扫码核验本证书</h3>
-      <p id="pageUrl">——</p>
-    </div>
-  </div>
-
-  <div class="foot">
-    数据来源：<b>cnse.e-cqs.cn</b> 全国特种设备公示信息查询平台存档公示记录<br>
-    本页面为证书真伪扫码核验使用，仅收录公示期档案字段，详细以官网原文为准
-  </div>
-
+<!-- ============ 详情面板（点“显示详情”后显示，复刻 tplDetail 表格） ============ -->
+<div id="contentDetail" class="mui-content" style="display:none;">
 </div>
 
 <script>
-/* =========================================================================
-   证件档案数据对象 —— 换人只改这一个对象即可
-   ========================================================================= */
-const CERT = {
-  avatar: "伍",
-  name:   "伍金福",
-  sex:    "男",
-  sfzh:   "612425198808191454",
-  zslb:   "特种设备作业人员",
-  zsbh:   "612425198808191454",
-  fzjg:   "西安市市场监督管理局",
-  fzjgSzd:"陕西",
-  cyzl:   "作业人员",
-  khdw:   "陕西省特种设备检验检测协会",
-  khrq:   "2026-06-13",
-  czxm:   "起重机指挥",
-  pzrq:   "2026-06-16",
-  pzdw:   "西安市市场监督管理局",
-  yxrq:   "至 2030-06-12",
-  remark: "——"
-};
+  var CERT = {
+    data: {
+      sfzh:"612425198808191454", rymxm:"伍金福", ryxb:"男",
+      zslb:"特种设备作业人员", zsbh:"612425198808191454",
+      fzjg:"西安市市场监督管理局", fzjgszd:"陕西", cyzl:"作业人员", bzxx:"",
+      khdw:"陕西省特种设备检验检测协会", khrq:"2026-06-13", czxm:"起重机指挥",
+      pzrq:"2026-06-16", pzdw:"西安市市场监督管理局", yxrqs:"2026-06-16", yxrqz:"2030-06-12",
+      remark:"——", eCertFileId:""
+    },
+    otherItem:[]
+  };
+  var $ = function(id){return document.getElementById(id)};
 
-/* ----- 渲染 ----- */
-function $(id){return document.getElementById(id);}
-function fill(){const c=CERT;
-  $("initAv").textContent=c.avatar||c.name.charAt(0);
-  $("pName").innerHTML=c.name+' <span class="sex" id="pSex">'+c.sex+'</span>';
-  $("pNo").textContent=c.zsbh;
-  $("f_sfzh").textContent=c.sfzh;    $("f_name").textContent=c.name;
-  $("f_sex").textContent=c.sex;      $("f_zslb").textContent=c.zslb;
-  $("f_zsbh").textContent=c.zsbh;    $("f_fzjg").textContent=c.fzjg;
-  $("f_fzjgSzd").textContent=c.fzjgSzd; $("f_cyzl").textContent=c.cyzl;
-  $("f_khdw").textContent=c.khdw;    $("f_khrq").textContent=c.khrq;
-  $("f_czxm").textContent=c.czxm;    $("f_pzrq").textContent=c.pzrq;
-  $("f_pzdw").textContent=c.pzdw;    $("f_yxrq").textContent=c.yxrq;
-  $("f_remark").textContent=c.remark;
-}
-function qr(){
-  const url=location.href;
-  $("pageUrl").textContent=url;
-  // 优先使用随库托管的本地二维码；访问域名非正式域名时实时生成兜底
-  if (location.hostname.indexOf("github.io")>=0 || location.hostname.indexOf("cert")>=0) {
-    $("qrImg").src="qr.png";
-  } else {
-    $("qrImg").src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data="+encodeURIComponent(url);
+  // 有效日期：与官网一致——检验类显示“y至z”；其他(作业人员)返回有效期至 yxrqz
+  function fmt(item){
+    var cyzl=item.cyzl||"";
+    if(cyzl.indexOf("检验")>=0){ return item.yxrqz? item.yxrqz : (item.yxrqs+"至"+item.yxrqz); }
+    return item.yxrqz;
   }
-}
-fill();qr();
+  function cell(k,v){ return '<tr><td class="k">'+k+'</td><td class="v">'+(v==null||v===""?"":v)+'</td></tr>'; }
+
+  function renderDetail(){
+    var d=CERT.data, rows="";
+    rows+=cell("身份证号",d.sfzh)+cell("姓名",d.rymxm)+cell("性别",d.ryxb)+cell("证书类别",d.zslb)
+        +cell("证书编号",d.zsbh)+cell("发证机关",d.fzjg)+cell("发证机关所在地",d.fzjgszd)
+        +cell("从业种类",d.cyzl)+cell("取证方式",d.bzxx||"")
+        +cell("考核单位",d.khdw)+cell("考核日期",d.khrq)+cell("持证项目",d.czxm)
+        +cell("批准日期",d.pzrq)+cell("批准单位",d.pzdw)+cell("有效日期",fmt(d))
+        +cell("备注",d.remark);
+    if(d.eCertFileId){ rows+='<tr><td colspan="2" style="background:#fff;"><a href="#">电子证书预览</a></td></tr>'; }
+    return '<div class="mui-card"><div><table class="mtable"><tbody>'+rows+'</tbody></table></div></div>';
+  }
+
+  $("bShow").addEventListener("click", function(){
+    // 演示页：此静态版本点开即展示完整档案（对应官网输入正确验证码后的结果页）
+    $("contentDetail").innerHTML = renderDetail() + renderOther();
+    $("queryPanel").style.display="none";
+    $("contentDetail").style.display="block";
+  });
+
+  function renderOther(){
+    var o=CERT.otherItem||[], html="";
+    for(var i=0;i<o.length;i++){ var it=o[i],r="";
+      r+=cell("身份证号",it.sfzh)+cell("姓名",it.rymxm)+cell("性别",it.ryxb)+cell("证书类别",it.zslb)
+       +cell("证书编号",it.zsbh)+cell("发证机关",it.fzjg)+cell("发证机关所在地",it.fzjgszd)
+       +cell("从业种类",it.cyzl)+cell("取证方式",it.bzxx||"")
+       +cell("考核单位",it.khdw)+cell("考核日期",it.khrq)+cell("持证项目",it.czxm)
+       +cell("批准日期",it.pzrq)+cell("批准单位",it.pzdw)+cell("有效日期",fmt(it)) +cell("备注",it.remark);
+      html+='<div class="mui-card"><div><table class="mtable"><tbody>'+r+'</tbody></table></div></div>';
+    }
+    return html;
+  }
+
+  $("bReset").addEventListener("click", function(){ $("vCode").value=""; });
+  $("vCode").addEventListener("keydown", function(e){ if(e.key==="Enter") $("bShow").click(); });
+  $("imgVCode").addEventListener("click", function(){ /* 官网点击刷新验证码；演示页无后端，忽略 */ });
 </script>
 </body>
 </html>
