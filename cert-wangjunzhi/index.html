@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>全国特种设备公示信息查询平台</title>
+<style>
+/* ---- copy of official 表现风格：body 浅灰、mui-title 黑色导航、mui-card 白底 ---- */
+body{background:#efeff4;font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;margin:0;color:#222}
+*{box-sizing:border-box}
+/* mui 风格 cell */
+.mui-content{background:#efeff4}
+.mui-card{background:#fff;border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.3);margin:12px}
+.mui-card>div{margin:10px}
+/* form rows */
+.mui-input-group{background:#fff;overflow:hidden}
+.mui-input-row{display:flex;align-items:center;padding:0 15px;border-bottom:1px solid #c8c7cc;background:#fff;min-height:44px}
+.mui-input-row label,.mui-input-row p{flex:1;margin:0;font-size:15px}
+.mui-input-group .mui-input-row{float:none}
+.mui-button{display:inline-block;padding:6px 12px;margin-bottom:0;font-weight:500;font-size:14px;line-height:inherit;
+  text-align:center;border:1px solid #ccc;border-radius:2px;background:#f7f7f7}
+/* colors taken from observed official */
+.btn-blue{background-color:#074fa1;color:#fff;border-color:#074fa1}
+.btn-gray{background-color:#dfdfdf;color:#333;border-color:#dfdfdf}
+@media (min-width:48em){ .mui-card{margin:18px auto;max-width:560px} }
+/* M-type detail table mimicking layui-table */
+.mtable{width:100%;border-collapse:collapse;border:1px solid #e2e2e2;background:#fff;font-size:14px}
+.mtable td{border:1px solid #e2e2e2;padding:9px 15px;vertical-align:top;line-height:1.5}
+.mtable td.k{width:34%;background:#fafafa;color:#333;font-weight:normal}
+.mtable td.v{color:#222}
+</style>
+</head>
+<body>
+
+<header class="mui-bar" style="background:#f7f7f7;border-bottom:1px solid #d9d9d9;height:44px;line-height:44px;padding:0 10px;">
+  <h1 style="margin:0;font-size:17px;color:#000;text-align:left;font-weight:500;" class="mui-title">全国特种设备公示信息查询平台</h1>
+</header>
+
+<!-- ============ 查询面板（首屏，复刻 qrcode 页） ============ -->
+<div id="queryPanel" class="mui-content" style="padding-top:2px;">
+  <div class="mui-card">
+    <div class="mui-input-group">
+      <div class="mui-input-row" style="min-height:auto;padding:14px 15px;border-bottom:none;display:block;">
+        <p style="font-size:15px;color:#333;">
+          <b>您查询的人员公示基本信息如下：</b><br>
+          姓名：王军志<br>
+          证书编号：612425199209066314<br>
+          如需查看详细信息，请在下方输入验证码后，点击“显示详情”按钮继续查看<br><br>
+          请在<span id="spTimeTick" style="font-weight:bold;color:Red">110</span>秒内完成验证查询。超时后，请重新扫码查验。
+        </p>
+      </div>
+      <div class="mui-input-row" style="border-top:1px solid #c8c7cc;height:50px;">
+        <input type="text" name="vCode" id="vCode" placeholder="请输入验证码"
+               style="flex:1;height:34px;border:1px solid #e4e4e4;background:#fafafa;padding:0 8px;font-size:15px;">
+        <img id="imgVCode" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='36'><rect width='100%25' height='100%25' fill='%23f3efe2'/><text x='8' y='25' font-size='18' fill='%23074fa1' font-family='Georgia' font-style='italic'>7N&nbsp;2Q</text></svg>"
+             title="示例验证码（本静态页不作真实校验，点击可直接看详情）" style="height:36px;margin-left:10px;cursor:pointer;">
+      </div>
+      <div style="padding:0 15px 22px;text-align:center;margin-top:2px;">
+        <button type="button" id="bShow" class="mui-button btn-blue" style="width:46%;height:40px;font-size:20px;">显示详情</button>
+        <button type="button" id="bReset" class="mui-button btn-gray" style="width:46%;height:40px;font-size:20px;margin-left:2%;">清空</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 详情面板（点“显示详情”后显示，复刻 tplDetail 表格） ============ -->
+<div id="contentDetail" class="mui-content" style="display:none;">
+</div>
+
+<script>
+  var CERT = {
+    data: {
+      sfzh:"612425199209066314", rymxm:"王军志", ryxb:"男",
+      zslb:"特种设备作业人员", zsbh:"612425199209066314",
+      fzjg:"西安市市场监督管理局", fzjgszd:"陕西", cyzl:"作业人员", bzxx:"",
+      khdw:"陕西省特种设备检验检测协会", khrq:"2026-08-18", czxm:"起重机指挥",
+      pzrq:"2026-08-21", pzdw:"西安市市场监督管理局", yxrqs:"2026-08-21", yxrqz:"2030-08-20",
+      remark:"——", eCertFileId:""
+    },
+    otherItem:[]
+  };
+  var $ = function(id){return document.getElementById(id)};
+
+  // 有效日期：与官网一致——检验类显示“y至z”；其他(作业人员)返回有效期至 yxrqz
+  function fmt(item){
+    var cyzl=item.cyzl||"";
+    if(cyzl.indexOf("检验")>=0){ return item.yxrqz? item.yxrqz : (item.yxrqs+"至"+item.yxrqz); }
+    return item.yxrqz;
+  }
+  function cell(k,v){ return '<tr><td class="k">'+k+'</td><td class="v">'+(v==null||v===""?"":v)+'</td></tr>'; }
+
+  function renderDetail(){
+    var d=CERT.data, rows="";
+    rows+=cell("身份证号",d.sfzh)+cell("姓名",d.rymxm)+cell("性别",d.ryxb)+cell("证书类别",d.zslb)
+        +cell("证书编号",d.zsbh)+cell("发证机关",d.fzjg)+cell("发证机关所在地",d.fzjgszd)
+        +cell("从业种类",d.cyzl)+cell("取证方式",d.bzxx||"")
+        +cell("考核单位",d.khdw)+cell("考核日期",d.khrq)+cell("持证项目",d.czxm)
+        +cell("批准日期",d.pzrq)+cell("批准单位",d.pzdw)+cell("有效日期",fmt(d))
+        +cell("备注",d.remark);
+    if(d.eCertFileId){ rows+='<tr><td colspan="2" style="background:#fff;"><a href="#">电子证书预览</a></td></tr>'; }
+    return '<div class="mui-card"><div><table class="mtable"><tbody>'+rows+'</tbody></table></div></div>';
+  }
+
+  $("bShow").addEventListener("click", function(){
+    $("contentDetail").innerHTML = renderDetail() + renderOther();
+    $("queryPanel").style.display="none";
+    $("contentDetail").style.display="block";
+  });
+
+  function renderOther(){
+    var o=CERT.otherItem||[], html="";
+    for(var i=0;i<o.length;i++){ var it=o[i],r="";
+      r+=cell("身份证号",it.sfzh)+cell("姓名",it.rymxm)+cell("性别",it.ryxb)+cell("证书类别",it.zslb)
+       +cell("证书编号",it.zsbh)+cell("发证机关",it.fzjg)+cell("发证机关所在地",it.fzjgszd)
+       +cell("从业种类",it.cyzl)+cell("取证方式",it.bzxx||"")
+       +cell("考核单位",it.khdw)+cell("考核日期",it.khrq)+cell("持证项目",it.czxm)
+       +cell("批准日期",it.pzrq)+cell("批准单位",it.pzdw)+cell("有效日期",fmt(it)) +cell("备注",it.remark);
+      html+='<div class="mui-card"><div><table class="mtable"><tbody>'+r+'</tbody></table></div></div>';
+    }
+    return html;
+  }
+
+  $("bReset").addEventListener("click", function(){ $("vCode").value=""; });
+  $("vCode").addEventListener("keydown", function(e){ if(e.key==="Enter") $("bShow").click(); });
+  $("imgVCode").addEventListener("click", function(){ /* 官网点击刷新验证码；演示页无后端，忽略 */ });
+</script>
+</body>
+</html>
